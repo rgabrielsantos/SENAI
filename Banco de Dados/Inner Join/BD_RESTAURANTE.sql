@@ -242,9 +242,28 @@ join cliente c on c.idcliente = rsv.idcliente
 join restaurante r on r.idrestaurante = rsv.idrestaurante 
 group by r.telefone like '%71%'; 
 -- 14 Qual a quantidade de clientes que reservaram uma mesa com mais de 4 lugares?
-select ,
+select count(c.idcliente) as Quantidade
+from reserva rsv
+join cliente c on c.idcliente = rsv.idcliente
+join restaurante r on r.idrestaurante = rsv.idrestaurante
+join mesa m on m.idrestaurante = r.idrestaurante
+where m.capacidade > 4;
+
 -- 15 Qual o maior preço de reserva já feito e o restaurante a qual pertence.
+select r.nome as Nome_restaurante, rsv.valor_reserva as Maior_reserva
+from reserva rsv
+join restaurante r on r.idrestaurante = rsv.idrestaurante
+order by rsv.valor_reserva desc limit 1;
 
 -- 16 Liste o cargo de todos os funcionários que já fizeram uma reserva e o valor das mesmas.
 	
+select f.nome as Nome_funcionario, f.cargo, rsv.valor_reserva as Valor_da_Reserva
+from reserva rsv
+join funcionario f on f.idfuncionario = rsv.idfuncionario;
 -- 17 Liste o menor valor já reservado por um cliente, trazendo o nome dele e a capacidade da mesa associada.
+select c.nome as Cliente, rsv.quantidade_pessoas as Capacidade_Real, rsv.valor_reserva as Reserva, m.capacidade as Capacidade_total
+from reserva rsv
+join cliente c on c.idcliente = rsv.idcliente
+join restaurante r on r.idrestaurante = rsv.idrestaurante
+join mesa m on m.idrestaurante = r.idrestaurante
+order by rsv.valor_reserva ;
