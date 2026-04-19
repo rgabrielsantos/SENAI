@@ -1,0 +1,8 @@
+Ano,Data_Completa,Forma_de_Pagamento,Status_de_Entrega,Vendedor,Cliente,Preço,Modelo
+2021,2021-01-05,"Cartao de Credito",Entregue,JoÃ£o,Ana,68000.00,Corolla
+2021,2021-01-05,Financiamento,NULL,Joana,Ana,220000.00,Frontier
+2021,2021-05-25,"Cartao de Credito",Entregue,David,Claudia,23000.00,City
+2022,2022-02-12,Financiamento,"Em Processo de Entrega",Maria,Pedro,57000.00,Civic
+2022,2022-05-23,Financiamento,"Em Processo de Entrega",Joana,Antonio,27000.00,Civic
+2023,2023-01-12,Financiamento,NULL,JoÃ£o,Pedro,23000.00,City
+2023,2023-03-20,Pix,Entregue,Joana,Suzana,110000.00,"Model 1"
