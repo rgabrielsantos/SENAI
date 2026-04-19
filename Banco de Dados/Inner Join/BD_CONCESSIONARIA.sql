@@ -111,11 +111,62 @@ select * from vendedor;
 - Qual vendedor possui maior número de vendas? Trazer nome do vendedor e quantidade de vendas feitas.
 */
 
+
+SELECT v.nome as Vendedor, count(ven.idvendas) as Vendas
+FROM vendas ven
+JOIN vendedor v on v.idvendedor = ven.idvendedor
+group by v.nome
+order by count(ven.idvendas) desc limit 1;
 /*
 - Qual a média da quilometragem de todos os carros vendidos?
-- Qual o maior preço do carro disponível na concessionária? E o maior preço do carro já vendido?
-- Quais são os carros que já foram vendidos mais de uma vez na concessionária? Trazer marca, modelo e quantidade de vezes.
-- Quais são os clientes que já compraram mais de um carro na concessionária? Trazendo o nome do cliente e quantidade comprada de cada um.
-
-
 */
+select avg(c.quilometragem) as Media
+from Vendas v
+join carro c on c.idcarro = v.idcarro;
+/*
+- Qual o maior preço do carro disponível na concessionária? E o maior preço do carro já vendido?
+*/
+select max(c.preco) as Maior_Preço
+from carro c;
+
+select v.idcarro ,c.preco as Maior_Preço
+from vendas v
+join carro c on c.idcarro = v.idcarro
+order by c.preco desc limit 1;
+
+select * from vendas;
+select * from carro;
+
+/*
+- Quais são os carros que já foram vendidos mais de uma vez na concessionária? Trazer marca, modelo e quantidade de vezes.
+*/
+select c.marca as Marca, c.modelo as Modelo, count(v.idcarro) as Quantidades_Vendidas
+from Vendas v
+join carro c on c.idcarro = v.idcarro
+group by c.marca, c.modelo;
+/*
+- Quais são os clientes que já compraram mais de um carro na concessionária? Trazendo o nome do cliente e quantidade comprada de cada um.
+*/
+select * from cliente;
+
+select c.nome as Cliente, count(v.idcliente) as Quantidade_Compra
+from vendas v
+join cliente c on c.idcliente = v.idcliente
+group by c.nome
+having Quantidade_Compra>1;
+
+/*- Trazer todas as vendas, contendo: Somente ano da venda, data da venda completa, forma de pagamento, 
+status da entrega, nome do vendedor, nome do cliente, preço e modelo do carro. 
+Ordenando pela data da venda. 
+Exportar em planilha .csv e anexar à atividade.
+*/
+
+select year(v.data_venda) as Ano, v.data_venda as Data_Completa, v.forma_pagamento as Forma_de_Pagamento,
+v.status_entrega as Status_de_Entrega, ven.nome as Vendedor, c.nome as Cliente, car.preco as Preço, car.modelo as Modelo
+from Vendas v
+join vendedor ven on ven.idvendedor = v.idvendedor
+join cliente c on c.idcliente = v.idcliente
+join carro car on car.idcarro = v.idcarro
+order by v.data_venda;
+
+
