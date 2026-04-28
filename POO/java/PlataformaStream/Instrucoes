@@ -1,0 +1,49 @@
+Requisitos do Sistema
+1. Abstração – Classe Conteudo
+Criar uma classe abstrata chamada Conteudo.
+Atributos:
+● titulo (String)
+● duracao (int – em minutos)
+● classificacaoIndicativa (int)
+Bom trabal!ho!
+Página 1 de 3
+TURNO: Noturno TURMA: G99242 DATA: 21/05/2026
+CURSO: Desenvolvimento de Sistemas DOCENTE.: Carlos Henrique O.
+Freitas
+UNIDADE
+CURRICULAR:
+Programação de Aplicativos
+Métodos:
+● Construtor para inicializar os atributos.
+● Método abstrato exibirDetalhes().
+● Método concreto reproduzir().
+2. Herança – Subclasses
+Implementar as seguintes subclasses:
+Classe Atributos adicionais
+Filme genero
+Serie temporadas, episodioPorTemporada
+Documentario tema
+Cada subclasse deve sobrescrever o método exibirDetalhes().
+3. Polimorfismo
+Utilizar o polimorfismo ao armazenar diferentes tipos de conteúdos em uma mesma estrutura,
+como um vetor ou ArrayList<Conteudo>, permitindo que o método exibirDetalhes() seja
+executado de forma específica para cada tipo.
+4. Encapsulamento
+● Todos os atributos devem ser private.
+● Implementar métodos getters e, quando necessário, setters.
+● Validar dados, como:
+● duracao > 0
+● classificacaoIndicativa >= 0
+Interação com o Usuário
+Criar uma classe Usuario para representar os usuários da plataforma.
+Atributos:
+● nome (String)
+● email (String)
+● favoritos (ArrayList<Conteudo>)
+Bom trabal!ho!
+Página 2 de 3
+Métodos:
+● adicionarFavorito(Conteudo conteudo)
+● listarFavoritos()
+● reproduzirConteudo(Conteudo conteudo)
+Classe Principal para Testes
