@@ -22,7 +22,9 @@ abstract public class Conta_Bancaria {
         this.saldo = saldo;
     }
 
-    public void depositar(double valor){}
+    public void depositar(double valor){
+        this.saldo =+ valor;
+    }
     abstract public void sacar(double valor);
     abstract public void exibirInfo();
 }

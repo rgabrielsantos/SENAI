@@ -24,7 +24,7 @@ public class Conta_Corrente extends Conta_Bancaria {
     @Override
     public void sacar(double valor){
         if((this.saldo - valor) < this.limite){
-            System.out.println("Transação cancelada! Limite exedido.");
+            System.out.println("Transação cancelada! Limite excedido.");
         } else {
             this.saldo -= valor;
             System.out.println("\nTransação concluida");
