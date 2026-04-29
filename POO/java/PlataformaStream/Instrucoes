@@ -5,14 +5,6 @@ Atributos:
 ● titulo (String)
 ● duracao (int – em minutos)
 ● classificacaoIndicativa (int)
-Bom trabal!ho!
-Página 1 de 3
-TURNO: Noturno TURMA: G99242 DATA: 21/05/2026
-CURSO: Desenvolvimento de Sistemas DOCENTE.: Carlos Henrique O.
-Freitas
-UNIDADE
-CURRICULAR:
-Programação de Aplicativos
 Métodos:
 ● Construtor para inicializar os atributos.
 ● Método abstrato exibirDetalhes().
@@ -40,8 +32,7 @@ Atributos:
 ● nome (String)
 ● email (String)
 ● favoritos (ArrayList<Conteudo>)
-Bom trabal!ho!
-Página 2 de 3
+
 Métodos:
 ● adicionarFavorito(Conteudo conteudo)
 ● listarFavoritos()
