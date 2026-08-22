@@ -1,45 +1,44 @@
+using Microsoft.AspNetCore.Mvc;
 using MinhaApi.Models;
 using MinhaApi.Services;
-using Microsoft.AspNetCore.Mvc;
+
 
 [ApiController]
 [Route("api/[controller]")]
-public class ProdutoController
-    : ControllerBase
+
+public class TipoController : ControllerBase
 {
-    private readonly IProdutoService _service;
+    private readonly ITipoService _service;
 
-    public ProdutoController(
-        IProdutoService service)
-        => _service = service;
+    public TipoController(ITipoService service) => _service = service;
 
-    // GET /api/produto
+       // GET /api/tipo
     [HttpGet]
     public IActionResult GetAll()
     {
-        var produtos = _service.GetAll();
-        return Ok(produtos);
+        var tipos = _service.GetAll();
+        return Ok(tipos);
     }
 
-    // GET /api/produto/1
+    // GET /api/tipo/1
     [HttpGet("{id}")]
     public IActionResult GetById(int id)
     {
-        var produto = _service.GetById(id);
-        if (produto == null)
+        var tipo = _service.GetById(id);
+        if (tipo == null)
             return NotFound();
-        return Ok(produto);
+        return Ok(tipo);
     }
 
-    // POST /api/produto
+    // POST /api/tipo
 [HttpPost]
 public IActionResult Create(
-    [FromBody] Produto produto)
+    [FromBody] Tipo tipo)
 {
     if (!ModelState.IsValid)
         return BadRequest(ModelState);
 
-    var criado = _service.Create(produto);
+    var criado = _service.Create(tipo);
 
     return CreatedAtAction(
         nameof(GetById),
@@ -47,14 +46,14 @@ public IActionResult Create(
         criado);
 }
 
-// PUT /api/produto/1
+// PUT /api/tipo/1
 [HttpPut("{id}")]
 public IActionResult Update(
     int id,
-    [FromBody] Produto produto)
+    [FromBody] Tipo tipo)
 {
     var atualizado =
-        _service.Update(id, produto);
+        _service.Update(id, tipo);
 
     if (atualizado == null)
         return NotFound();
@@ -62,7 +61,7 @@ public IActionResult Update(
     return Ok(atualizado);
 }
 
-// DELETE /api/produto/1
+// DELETE /api/tipo/1
 [HttpDelete("{id}")]
 public IActionResult Delete(int id)
 {
