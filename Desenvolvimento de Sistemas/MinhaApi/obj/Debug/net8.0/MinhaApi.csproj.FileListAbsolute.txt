@@ -32,3 +32,6 @@
 /home/rodri/Documentos/senai/Desenvolvimento de Sistemas/SENAI/Desenvolvimento de Sistemas/MinhaApi/obj/Debug/net8.0/MinhaApi.pdb
 /home/rodri/Documentos/senai/Desenvolvimento de Sistemas/SENAI/Desenvolvimento de Sistemas/MinhaApi/obj/Debug/net8.0/MinhaApi.genruntimeconfig.cache
 /home/rodri/Documentos/senai/Desenvolvimento de Sistemas/SENAI/Desenvolvimento de Sistemas/MinhaApi/obj/Debug/net8.0/ref/MinhaApi.dll
+/home/rodri/Documentos/senai/Desenvolvimento de Sistemas/SENAI/Desenvolvimento de Sistemas/MinhaApi/bin/Debug/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+/home/rodri/Documentos/senai/Desenvolvimento de Sistemas/SENAI/Desenvolvimento de Sistemas/MinhaApi/bin/Debug/net8.0/Microsoft.Extensions.Logging.Abstractions.dll
+/home/rodri/Documentos/senai/Desenvolvimento de Sistemas/SENAI/Desenvolvimento de Sistemas/MinhaApi/bin/Debug/net8.0/MySqlConnector.dll
