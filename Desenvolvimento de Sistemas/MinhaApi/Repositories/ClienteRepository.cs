@@ -1,0 +1,121 @@
+using MinhaApi.Models;
+using MySqlConnector;
+using MinhaApi.Repositories;
+
+    public class ClienteRepository : IClienteRepository
+    {
+        private readonly string _connectionString;
+
+        public ClienteRepository(IConfiguration config)
+        {
+            _connectionString = config.GetConnectionString("DefaultConnection");
+        }
+
+        public IEnumerable<Cliente> GetAll()
+        {
+            var lista = new List<Cliente>();
+
+            using var conn = new MySqlConnection(_connectionString);
+            conn.Open();
+
+            string sql = @"
+            SELECT Id, Nome, Email, Cpf, Ativo
+            FROM cliente
+            WHERE id = @Id";
+
+            using var cmd = new MySqlCommand(sql, conn);
+
+            using var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                lista.Add(new Cliente
+                {
+                    Id = reader.GetInt32("Id"),
+                    Nome = reader.GetString("Nome"),
+                    Email = reader.GetString("Email"),
+                    Cpf = reader.GetString("Cpf"),
+                    Ativo = reader.GetBoolean("Ativo")
+                });
+            }
+            return lista;
+        }
+
+        public Cliente? GetById(int id)
+        {
+            using var conn = new MySqlConnection(_connectionString);
+
+            string sql = @"
+            SELECT Id, Nome, Email, Cpf, Ativo
+            FROM cliente
+            WHERE id = @Id";
+
+            using var cmd = new MySqlCommand(sql, conn);
+
+            cmd.Parameters.AddWithValue("@Id", id);
+
+            using var reader = cmd.ExecuteReader();
+
+            if (reader.Read())
+            {
+                return new Cliente
+                {
+                    Id = reader.GetInt32("Id"),
+                    Nome = reader.GetString("Nome"),
+                    Email = reader.GetString("Email"),
+                    Cpf = reader.GetString("Cpf"),
+                    Ativo = reader.GetBoolean("Ativo")
+                };
+            }
+
+            return null;
+        }
+
+        public void Add(Cliente c)
+        {
+            using var conn = new MySqlConnection(_connectionString);
+
+            conn.Open();
+
+            string sql = @"INSERT INTO
+                        cliente(Id,Nome,Email,Cpf,Ativo)
+                        VALUES
+                        (@Nome,@Email,@Cpf,@Ativo)
+                        SELECT LAST_INSERT_ID();";
+            using var cmd = new MySqlCommand(sql,conn);
+
+            cmd.Parameters.AddWithValue("@Nome", c.Nome);
+            cmd.Parameters.AddWithValue("@Email", c.Email);
+            cmd.Parameters.AddWithValue("@Cpf", c.Cpf);
+            cmd.Parameters.AddWithValue("@Ativo", c.Ativo);
+
+            var idGerado = cmd.ExecuteScalar();
+            c.Id = Convert.ToInt32(idGerado);
+        }
+        public void Update(Cliente c)
+        {
+            using var conn = new MySqlConnection(_connectionString);
+            conn.Open();
+
+            string sql = @"UPDATE cliente
+                   SET Nome = @Nome,Email = @Email,Cpf = @Cpf, Ativo = @Ativo
+                   WHERE id = @Id";
+            using var cmd = new MySqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@Id", c.Id);
+            cmd.Parameters.AddWithValue("@Nome", c.Nome);
+            cmd.Parameters.AddWithValue("@Email", c.Email);
+            cmd.Parameters.AddWithValue("@Cpf", c.Cpf);
+            cmd.Parameters.AddWithValue("@Ativo", c.Ativo);
+            cmd.ExecuteNonQuery();
+        }
+        public void Delete(int id)
+        {
+            using var conn = new MySqlConnection(_connectionString);
+            conn.Open();
+
+            string sql = "DELETE FROM produtos WHERE id = @Id";
+            using var cmd = new MySqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@Id", id);
+            cmd.ExecuteNonQuery();
+        }
+    }
+
