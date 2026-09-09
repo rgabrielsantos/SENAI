@@ -8,7 +8,7 @@ using MinhaApi.Repositories;
 
         public ClienteRepository(IConfiguration config)
         {
-            _connectionString = config.GetConnectionString("DefaultConnection");
+            _connectionString = config.GetConnectionString("DefaultConnection")!;
         }
 
         public IEnumerable<Cliente> GetAll()
@@ -21,7 +21,7 @@ using MinhaApi.Repositories;
             string sql = @"
             SELECT Id, Nome, Email, Cpf, Ativo
             FROM cliente
-            WHERE id = @Id";
+            ";
 
             using var cmd = new MySqlCommand(sql, conn);
 
@@ -42,7 +42,8 @@ using MinhaApi.Repositories;
 
         public Cliente? GetById(int id)
         {
-            using var conn = new MySqlConnection(_connectionString);
+        using var conn = new MySqlConnection(_connectionString);
+        conn.Open();
 
             string sql = @"
             SELECT Id, Nome, Email, Cpf, Ativo
@@ -79,8 +80,7 @@ using MinhaApi.Repositories;
             string sql = @"INSERT INTO
                         cliente(Id,Nome,Email,Cpf,Ativo)
                         VALUES
-                        (@Nome,@Email,@Cpf,@Ativo)
-                        SELECT LAST_INSERT_ID();";
+                        (@Nome,@Email,@Cpf,@Ativo);";
             using var cmd = new MySqlCommand(sql,conn);
 
             cmd.Parameters.AddWithValue("@Nome", c.Nome);
@@ -112,7 +112,10 @@ using MinhaApi.Repositories;
             using var conn = new MySqlConnection(_connectionString);
             conn.Open();
 
-            string sql = "DELETE FROM produtos WHERE id = @Id";
+        string sql = @"Update cliente
+            set ativo = false
+            WHERE id = @Id";
+            
             using var cmd = new MySqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@Id", id);
             cmd.ExecuteNonQuery();

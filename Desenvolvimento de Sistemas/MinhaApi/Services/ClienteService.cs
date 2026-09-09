@@ -1,11 +1,8 @@
-
-
 using MinhaApi.Models;
 using MinhaApi.Repositories;
-
-namespace MinhaApi.Services;
-
-public class ClienteService : IClienteService
+using MinhaApi.Services;
+public class ClienteService :
+IClienteService
 {
     private readonly IClienteRepository _repo;
 
