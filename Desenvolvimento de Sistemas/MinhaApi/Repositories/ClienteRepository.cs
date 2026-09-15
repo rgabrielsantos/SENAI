@@ -78,7 +78,7 @@ using MinhaApi.Repositories;
             conn.Open();
 
             string sql = @"INSERT INTO
-                        cliente(Id,Nome,Email,Cpf,Ativo)
+                        cliente(Nome,Email,Cpf,Ativo)
                         VALUES
                         (@Nome,@Email,@Cpf,@Ativo);";
             using var cmd = new MySqlCommand(sql,conn);
@@ -115,7 +115,7 @@ using MinhaApi.Repositories;
         string sql = @"Update cliente
             set ativo = false
             WHERE id = @Id";
-            
+
             using var cmd = new MySqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@Id", id);
             cmd.ExecuteNonQuery();

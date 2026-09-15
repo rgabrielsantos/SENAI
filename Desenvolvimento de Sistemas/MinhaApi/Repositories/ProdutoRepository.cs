@@ -116,4 +116,18 @@ public class ProdutoRepository : IProdutoRepository
         cmd.Parameters.AddWithValue("@Id", id);
         cmd.ExecuteNonQuery();
     }
+    public void UpdateEstoque(int quantidade, int id_produto)
+    {
+        using var conn = new MySqlConnection(_connectionString);
+        conn.Open();
+        string sql = @"UPDATE produtos
+                    SET estoque = estoque - @Quantidade
+                    WHERE id = @Id_produto;
+                    ";
+        using var cmd = new MySqlCommand(sql, conn);
+        cmd.Parameters.AddWithValue("@Quantidade", quantidade);
+        cmd.Parameters.AddWithValue("@Id_produto", id_produto);
+        cmd.ExecuteNonQuery();
+
+    }
 }
