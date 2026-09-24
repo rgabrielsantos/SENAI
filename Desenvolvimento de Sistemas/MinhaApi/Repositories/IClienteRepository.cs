@@ -11,7 +11,7 @@ using MinhaApi.Models;
 namespace MinhaApi.Repositories;
 public interface IClienteRepository
 {
-    public IEnumerable<Cliente> GetAll();
+    IEnumerable<Cliente> GetAll();
     Cliente? GetById(int id);
     void Add(Cliente cliente);
     void Update(Cliente cliente);

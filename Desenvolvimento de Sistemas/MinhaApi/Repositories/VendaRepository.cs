@@ -1,6 +1,5 @@
 using MySqlConnector;
 using MinhaApi.Models;
-using MinhaApi.Repositories;
 namespace MinhaApi.Repositories;
 
 public class VendaRepository : IVendaRepository

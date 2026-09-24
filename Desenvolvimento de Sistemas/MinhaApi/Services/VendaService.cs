@@ -1,6 +1,7 @@
 using MinhaApi.Models;
 using MinhaApi.Repositories;
 using MinhaApi.Services;
+using MinhaApi.DTO;
 
 public class   VendaService : IVendaService
 
@@ -8,6 +9,8 @@ public class   VendaService : IVendaService
     private readonly IVendaRepository _repo;
     private readonly IProdutoRepository _produtoRepo;
     private readonly IClienteRepository _clienteRepo;
+
+
 
     public VendaService(IVendaRepository repo, IProdutoRepository produto,IClienteRepository cliente)
     {
@@ -17,14 +20,9 @@ public class   VendaService : IVendaService
 
     }
 
-    public Vendas Create(Vendas venda)
+    public VendaResponse Create(VendaRequest venda)
     {
         Produto produto;
-
-        if (venda.Valor_final < 0)
-        {
-            throw new ArgumentException("Preço inválido");
-        }
 
         if (_clienteRepo.GetById(venda.Id_cliente) == null)
         {
@@ -43,11 +41,25 @@ public class   VendaService : IVendaService
             throw new ArgumentException("Estoque vazio");
         }
 
-        venda.Valor_final = produto.Preco * venda.Quantidade;
+        Vendas vendaModel = new Vendas();
+        vendaModel.Valor_final = produto.Preco * venda.Quantidade;
+        vendaModel.Id_cliente = venda.Id_cliente;
+        vendaModel.Id_produto = venda.Id_produto;
+        vendaModel.Quantidade = venda.Quantidade;
 
-        _repo.Add(venda);
+        _repo.Add(vendaModel);
         _produtoRepo.UpdateEstoque(venda.Quantidade, venda.Id_produto);
-        return venda;
+
+        Vendas retorno = _repo.GetById(vendaModel.Id_venda);
+        return new VendaResponse
+        {
+            nomeCliente = retorno.nomeCliente,
+            Data_venda = retorno.Data_venda,
+            Id_venda = retorno.Id_venda,
+            nomeProduto = retorno.nomeProduto,
+            Valor_final = retorno.Valor_final,
+        };
+
     }
 
     public IEnumerable<Vendas> GetAll()

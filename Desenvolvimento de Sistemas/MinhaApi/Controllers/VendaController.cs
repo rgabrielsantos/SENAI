@@ -1,6 +1,7 @@
 
 
 using Microsoft.AspNetCore.Mvc;
+using MinhaApi.DTO;
 using MinhaApi.Models;
 using MinhaApi.Services;
 
@@ -19,7 +20,7 @@ public class VendaController : ControllerBase
         return Ok(produtos);
     }
     [HttpPost]
-    public IActionResult Create([FromBody] Vendas vendas)
+    public IActionResult Create([FromBody] VendaRequest vendas)
     {
         if (!ModelState.IsValid) return BadRequest();
 
