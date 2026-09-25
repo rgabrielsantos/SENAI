@@ -24,6 +24,9 @@ builder.Services.AddScoped<
 builder.Services.AddScoped<
     IDepartamentoRepository,
     DepartamentoRepository>();
+builder.Services.AddScoped<
+    IFuncionarioRepository,
+    FuncionarioRepository>();
 
 // ✅ Registra a Service
 builder.Services.AddScoped<
@@ -44,6 +47,9 @@ builder.Services.AddScoped<
 builder.Services.AddScoped<
     IDepartamentoService,
     DepartamentoService>();
+builder.Services.AddScoped<
+    IFuncionarioService,
+    FuncionarioService>();
 
 var app = builder.Build();
 
