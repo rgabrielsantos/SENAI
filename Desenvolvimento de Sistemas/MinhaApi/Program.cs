@@ -41,6 +41,9 @@ builder.Services.AddScoped<
 builder.Services.AddScoped<
     IFornecedorService,
     FornecedorService>();
+builder.Services.AddScoped<
+    IDepartamentoService,
+    DepartamentoService>();
 
 var app = builder.Build();
 
