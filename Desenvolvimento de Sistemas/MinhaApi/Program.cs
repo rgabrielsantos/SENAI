@@ -1,3 +1,4 @@
+using MinhaApi.Models;
 using MinhaApi.Repositories;
 using MinhaApi.Services;
 
@@ -20,7 +21,9 @@ builder.Services.AddScoped<
 builder.Services.AddScoped<
     IFornecedorRepository,
     FornecedorRepository>();
-
+builder.Services.AddScoped<
+    IDepartamentoRepository,
+    DepartamentoRepository>();
 
 // ✅ Registra a Service
 builder.Services.AddScoped<
