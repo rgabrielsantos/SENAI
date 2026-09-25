@@ -18,7 +18,7 @@ public class DepartamentoRepository
         conn.Open();
 
         string sql = @"
-            SELECT id_departamento, nome, descricao, Ativo
+            SELECT id_departamento, nome, descricao, status
             FROM departamento
             ";
 
@@ -32,7 +32,7 @@ public class DepartamentoRepository
                 Id_departamento = reader.GetInt32("id_departamento"),
                 Nome = reader.GetString("nome"),
                 Descricao = reader.GetString("descricao"),
-                Ativo = reader.GetBoolean("ativo")
+                Ativo = reader.GetBoolean("status")
 
             });
         }
@@ -44,7 +44,7 @@ public class DepartamentoRepository
         conn.Open();
 
         string sql = @"
-            SELECT id_departamento, nome, descricao, Ativo
+            SELECT id_departamento, nome, descricao, status
             FROM departamento
             WHERE id_departamento = @Id;
             ";
@@ -60,7 +60,7 @@ public class DepartamentoRepository
                 Id_departamento = reader.GetInt32("id_departamento"),
                 Nome = reader.GetString("nome"),
                 Descricao = reader.GetString("descricao"),
-                Ativo = reader.GetBoolean("ativo")
+                Ativo = reader.GetBoolean("status")
             };
         }
         return null;
@@ -90,13 +90,13 @@ public class DepartamentoRepository
         conn.Open();
 
         string sql = @"UPDATE departamento
-                   SET nome = @Nome,descricao = @Descricao, ativo = @Ativo
-                   WHERE id = @Id";
+                   SET nome = @Nome,descricao = @Descricao, status = @Status
+                   WHERE id_departamento = @Id";
         using var cmd = new MySqlCommand(sql, conn);
         cmd.Parameters.AddWithValue("@Id", d.Id_departamento);
         cmd.Parameters.AddWithValue("@Nome", d.Nome);
         cmd.Parameters.AddWithValue("@Descricao", d.Descricao);
-        cmd.Parameters.AddWithValue("@Ativo", d.Ativo);
+        cmd.Parameters.AddWithValue("@Status", d.Ativo);
         cmd.ExecuteNonQuery();
     }
     public void Delete(int id)
@@ -105,8 +105,8 @@ public class DepartamentoRepository
         conn.Open();
 
         string sql = @"Update departamento
-            set ativo = false
-            WHERE id = @Id";
+            set status = false
+            WHERE id_departamento = @Id";
 
         using var cmd = new MySqlCommand(sql, conn);
         cmd.Parameters.AddWithValue("@Id", id);
