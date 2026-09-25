@@ -32,7 +32,7 @@ public class DepartamentoRepository
                 Id_departamento = reader.GetInt32("id_departamento"),
                 Nome = reader.GetString("nome"),
                 Descricao = reader.GetString("descricao"),
-                Ativo = reader.GetBoolean("status")
+                Status = reader.GetBoolean("status")
 
             });
         }
@@ -60,7 +60,7 @@ public class DepartamentoRepository
                 Id_departamento = reader.GetInt32("id_departamento"),
                 Nome = reader.GetString("nome"),
                 Descricao = reader.GetString("descricao"),
-                Ativo = reader.GetBoolean("status")
+                Status = reader.GetBoolean("status")
             };
         }
         return null;
@@ -92,11 +92,12 @@ public class DepartamentoRepository
         string sql = @"UPDATE departamento
                    SET nome = @Nome,descricao = @Descricao, status = @Status
                    WHERE id_departamento = @Id";
+                   
         using var cmd = new MySqlCommand(sql, conn);
         cmd.Parameters.AddWithValue("@Id", d.Id_departamento);
         cmd.Parameters.AddWithValue("@Nome", d.Nome);
         cmd.Parameters.AddWithValue("@Descricao", d.Descricao);
-        cmd.Parameters.AddWithValue("@Status", d.Ativo);
+        cmd.Parameters.AddWithValue("@Status", d.Status);
         cmd.ExecuteNonQuery();
     }
     public void Delete(int id)

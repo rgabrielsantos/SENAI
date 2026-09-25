@@ -1,0 +1,17 @@
+use desenvolvimento_SENAI;
+
+CREATE TABLE funcionario(
+id_funcionario INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(225) NOT NULL,
+data_inicio DATE NOT NULL,
+ativo TINYINT(1) NOT NULL DEFAULT 1
+);
+
+CREATE TABLE departamento(
+id_departamento INT PRIMARY KEY AUTO_INCREMENT,
+id_funcionario INT,
+nome VARCHAR(45) NOT NULL,
+descricao TEXT NOT NULL,
+status TINYINT(1) NOT NULL DEFAULT 1,
+CONSTRAINT fk_id_funcionario FOREIGN KEY (id_funcionario) REFERENCES funcionario(id_funcionario)
+);

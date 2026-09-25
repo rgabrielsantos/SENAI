@@ -10,5 +10,5 @@ public class Departamento
 
     public string Descricao { get; set; }
 
-    public bool Ativo { get; set; } = true;
+    public bool Status { get; set; } = true;
 }

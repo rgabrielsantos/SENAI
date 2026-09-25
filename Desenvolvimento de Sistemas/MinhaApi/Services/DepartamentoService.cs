@@ -23,13 +23,14 @@ public class DepartamentoService
         return departamento;
     }
 
-    public Departamento Create([FromBody]Departamento departamento)
+    public Departamento Create(Departamento departamento)
     {
-        _repo.Add(departamento);
+        if (departamento.Nome == null) throw new ArgumentException("O campo nome é  obrigatorio!!");
+        
         return departamento;
     }
 
-    public Departamento? Update(int id, [FromBody]Departamento d)
+    public Departamento? Update(int id, Departamento d)
     {
         d.Id_departamento = id;
         _repo.Update(d);
