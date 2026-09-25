@@ -18,7 +18,7 @@ public class FornecedorRepository
         conn.Open();
 
         string sql = @"
-            SELECT id_fornecedor,id_produto, cnpj, data_cadastro, email, telefone, ativo
+            SELECT id_fornecedor,id_produto, nome, cnpj, data_cadastro, email, telefone, ativo
             FROM fornecedores;
             ";
 
@@ -31,6 +31,7 @@ public class FornecedorRepository
             {
                 Id_fornecedor = reader.GetInt32("id_fornecedor"),
                 Id_produto = reader.GetInt32("id_produto"),
+                Nome = reader.GetString("nome"),
                 Data_cadastro = reader.GetDateOnly("data_cadastro"),
                 Cnpj = reader.GetString("cnpj"),
                 Email = reader.GetString("email"),
@@ -47,13 +48,13 @@ public class FornecedorRepository
         conn.Open();
 
         string sql = @"
-            SELECT id_fornecedor, id_produto, cnpj, data_cadastro, email, telefone, ativo
+            SELECT id_fornecedor, id_produto, nome, cnpj, data_cadastro, email, telefone, ativo
             FROM fornecedores
             WHERE id_fornecedor = @id";
 
         using var cmd = new MySqlCommand(sql, conn);
 
-        cmd.Parameters.AddWithValue("@Id", id);
+        cmd.Parameters.AddWithValue("@id", id);
 
         using var reader = cmd.ExecuteReader();
 
@@ -63,6 +64,7 @@ public class FornecedorRepository
             {
                 Id_fornecedor = reader.GetInt32("id_fornecedor"),
                 Id_produto = reader.GetInt32("id_produto"),
+                Nome = reader.GetString("nome"),
                 Data_cadastro = reader.GetDateOnly("data_cadastro"),
                 Cnpj = reader.GetString("cnpj"),
                 Email = reader.GetString("email"),
@@ -81,13 +83,13 @@ public class FornecedorRepository
         conn.Open();
 
         string sql = @"INSERT INTO
-                        fornecedores(id_produto, cnpj,data_cadastro, email, telefone,ativo)
+                        fornecedores(id_produto, nome, cnpj, data_cadastro, email, telefone,ativo)
                         VALUES
                         (@Id_produto, @Cnpj, @Data_cadastro, @Email, @Telefone, @Ativo);";
         using var cmd = new MySqlCommand(sql, conn);
 
         cmd.Parameters.AddWithValue("@Id_produto", f.Id_produto);
-
+        cmd.Parameters.AddWithValue("@Nome", f.Nome);
         cmd.Parameters.AddWithValue("@Cnpj", f.Cnpj);
         cmd.Parameters.AddWithValue("@Email", f.Email);
         cmd.Parameters.AddWithValue("@Data_cadastro", f.Data_cadastro);
@@ -103,10 +105,11 @@ public class FornecedorRepository
         conn.Open();
 
         string sql = @"UPDATE fornecedores
-                   SET id_produto = @Id_produto, email = @Email, telefone = @Telefone, cnpj = @Cnpj,  ativo = @Ativo
+                   SET id_produto = @Id_produto, nome = @Nome, email = @Email, telefone = @Telefone, cnpj = @Cnpj,  ativo = @Ativo
                    WHERE id_fornecedor = @Id_fornecedor";
         using var cmd = new MySqlCommand(sql, conn);
         cmd.Parameters.AddWithValue("@Id_produto", f.Id_produto);
+        cmd.Parameters.AddWithValue("@Nome", f.Nome);
         cmd.Parameters.AddWithValue("@Cnpj", f.Cnpj);
         cmd.Parameters.AddWithValue("@Email", f.Email);
         cmd.Parameters.AddWithValue("@Telefone", f.Telefone);

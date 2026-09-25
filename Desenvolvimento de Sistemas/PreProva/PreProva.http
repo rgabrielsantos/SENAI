@@ -1,0 +1,6 @@
+@PreProva_HostAddress = http://localhost:5030
+
+GET {{PreProva_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
