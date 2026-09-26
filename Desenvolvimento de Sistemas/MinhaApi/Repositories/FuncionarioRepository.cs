@@ -19,7 +19,7 @@ public class FuncionarioRepository
 
         string sql = @"
             SELECT id_funcionario, nome, data_inicio, ativo
-            FROM funcionario
+            FROM funcionario;
             ";
 
         using var cmd = new MySqlCommand(sql, conn);
@@ -57,7 +57,7 @@ public class FuncionarioRepository
         {
             return new Funcionario
             {
-                Id_funcionario = reader.GetInt32("id_departamento"),
+                Id_funcionario = reader.GetInt32("id_funcionario"),
                 Nome = reader.GetString("nome"),
                 Data_inicio = reader.GetDateOnly("data_inicio"),
                 Ativo = reader.GetBoolean("ativo")
@@ -79,7 +79,7 @@ public class FuncionarioRepository
         using var cmd = new MySqlCommand(sql, conn);
 
         cmd.Parameters.AddWithValue("@Nome", f.Nome);
-        cmd.Parameters.AddWithValue("@Descricao", f.Data_inicio);
+        cmd.Parameters.AddWithValue("@Data_inicio", f.Data_inicio);
         cmd.Parameters.AddWithValue("@Ativo", f.Ativo);
 
         var idGerado = cmd.ExecuteScalar();
