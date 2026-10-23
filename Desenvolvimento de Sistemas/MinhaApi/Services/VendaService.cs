@@ -46,7 +46,8 @@ public class   VendaService : IVendaService
         vendaModel.Id_cliente = venda.Id_cliente;
         vendaModel.Id_produto = venda.Id_produto;
         vendaModel.Quantidade = venda.Quantidade;
-
+        vendaModel.Data_venda = DateTime.Now;
+        
         _repo.Add(vendaModel);
         _produtoRepo.UpdateEstoque(venda.Quantidade, venda.Id_produto);
 

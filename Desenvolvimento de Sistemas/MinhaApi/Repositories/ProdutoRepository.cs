@@ -22,7 +22,8 @@ public class ProdutoRepository : IProdutoRepository
 
         string sql = @"
             SELECT id, nome, preco, estoque, ativo
-            FROM produtos";
+            FROM produtos
+            WHERE ativo = true;";
 
         using var cmd = new MySqlCommand(sql, conn);
 
@@ -111,7 +112,9 @@ public class ProdutoRepository : IProdutoRepository
     {
         using var conn = new MySqlConnection(_connectionString);
         conn.Open();
-        string sql = "DELETE FROM produtos WHERE id = @Id";
+        string sql = @"UPDATE produtos
+        set ativo = false
+        WHERE id = @Id;";
         using var cmd = new MySqlCommand(sql, conn);
         cmd.Parameters.AddWithValue("@Id", id);
         cmd.ExecuteNonQuery();

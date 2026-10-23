@@ -25,7 +25,7 @@ public class FuncionarioService
     public Funcionario Create(Funcionario f)
     {
         if (f.Nome == null) throw new ArgumentException("O campo nome é  obrigatorio!!");
-
+        _repo.Add(f);
         return f;
     }
 

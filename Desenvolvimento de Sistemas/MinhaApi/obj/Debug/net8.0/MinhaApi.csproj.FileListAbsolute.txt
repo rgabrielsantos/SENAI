@@ -35,3 +35,12 @@
 /home/rodri/Documentos/senai/Desenvolvimento de Sistemas/SENAI/Desenvolvimento de Sistemas/MinhaApi/bin/Debug/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
 /home/rodri/Documentos/senai/Desenvolvimento de Sistemas/SENAI/Desenvolvimento de Sistemas/MinhaApi/bin/Debug/net8.0/Microsoft.Extensions.Logging.Abstractions.dll
 /home/rodri/Documentos/senai/Desenvolvimento de Sistemas/SENAI/Desenvolvimento de Sistemas/MinhaApi/bin/Debug/net8.0/MySqlConnector.dll
+/home/rodri/Documentos/senai/Desenvolvimento de Sistemas/SENAI/Desenvolvimento de Sistemas/MinhaApi/bin/Debug/net8.0/BCrypt-Net-Next.dll
+/home/rodri/Documentos/senai/Desenvolvimento de Sistemas/SENAI/Desenvolvimento de Sistemas/MinhaApi/bin/Debug/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/home/rodri/Documentos/senai/Desenvolvimento de Sistemas/SENAI/Desenvolvimento de Sistemas/MinhaApi/bin/Debug/net8.0/Microsoft.IdentityModel.Abstractions.dll
+/home/rodri/Documentos/senai/Desenvolvimento de Sistemas/SENAI/Desenvolvimento de Sistemas/MinhaApi/bin/Debug/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/home/rodri/Documentos/senai/Desenvolvimento de Sistemas/SENAI/Desenvolvimento de Sistemas/MinhaApi/bin/Debug/net8.0/Microsoft.IdentityModel.Logging.dll
+/home/rodri/Documentos/senai/Desenvolvimento de Sistemas/SENAI/Desenvolvimento de Sistemas/MinhaApi/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.dll
+/home/rodri/Documentos/senai/Desenvolvimento de Sistemas/SENAI/Desenvolvimento de Sistemas/MinhaApi/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/home/rodri/Documentos/senai/Desenvolvimento de Sistemas/SENAI/Desenvolvimento de Sistemas/MinhaApi/bin/Debug/net8.0/Microsoft.IdentityModel.Tokens.dll
+/home/rodri/Documentos/senai/Desenvolvimento de Sistemas/SENAI/Desenvolvimento de Sistemas/MinhaApi/bin/Debug/net8.0/System.IdentityModel.Tokens.Jwt.dll
